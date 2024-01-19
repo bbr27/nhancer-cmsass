@@ -24,7 +24,7 @@ export const load = async ({ fetch, data, depends, url }) => {
 
   const createProfilePath = "/account/create_profile"
   if (!_hasFullProfile(profile) && url.pathname !== createProfilePath) {
-    throw redirect(303, createProfilePath)
+    redirect(303, createProfilePath);
   }
 
   return { supabase, session, profile }

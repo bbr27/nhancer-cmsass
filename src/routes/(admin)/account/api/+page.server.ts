@@ -41,7 +41,7 @@ export const actions = {
   updatePassword: async ({ request, locals: { supabase, getSession } }) => {
     const session = await getSession()
     if (!session) {
-      throw redirect(303, "/login")
+      redirect(303, "/login");
     }
 
     const formData = await request.formData()
@@ -118,7 +118,7 @@ export const actions = {
       })
       if (error) {
         // The user was logged out because of bad password. Redirect to error page explaining.
-        throw redirect(303, "/login/current_password_error")
+        redirect(303, "/login/current_password_error");
       }
     }
 
@@ -143,7 +143,7 @@ export const actions = {
   deleteAccount: async ({ request, locals: { supabase, supabaseServiceRole, getSession } }) => {
     const session = await getSession()
     if (!session) {
-      throw redirect(303, "/login")
+      redirect(303, "/login");
     }
 
     const formData = await request.formData()
@@ -164,7 +164,7 @@ export const actions = {
     })
     if (pwError) {
       // The user was logged out because of bad password. Redirect to error page explaining.
-      throw redirect(303, "/login/current_password_error")
+      redirect(303, "/login/current_password_error");
     }
 
     const { error } = await supabaseServiceRole.auth.admin.deleteUser(session.user.id, true)
@@ -176,7 +176,7 @@ export const actions = {
     }
 
     await supabase.auth.signOut()
-    throw redirect(303, "/")
+    redirect(303, "/");
   },
   updateProfile: async ({ request, locals: { supabase, getSession } }) => {
     const formData = await request.formData()
@@ -239,7 +239,7 @@ export const actions = {
     const session = await getSession()
     if (session) {
       await supabase.auth.signOut()
-      throw redirect(303, "/")
+      redirect(303, "/");
     }
   },
 }

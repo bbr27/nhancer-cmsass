@@ -15,7 +15,7 @@
   -->
   <div
     class="fixed w-full top-0 right-0 left-0 h-1 z-50 bg-primary"
-    in:slide={{ delay: 100, duration: 12000, axis: "x", easing: expoOut }}
+    in:slide|global={{ delay: 100, duration: 12000, axis: "x", easing: expoOut }}
   ></div>
 {/if}
 <slot />
